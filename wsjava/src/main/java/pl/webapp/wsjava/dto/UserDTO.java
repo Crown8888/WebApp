@@ -6,6 +6,7 @@ public class UserDTO {
     private String username;
     private String password;
     private String email;
+    private boolean enabled;
 
     public UserDTO() {
     }
@@ -48,4 +49,9 @@ public class UserDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public boolean isEnabled() {
+        return true;
+    }
+
 }
