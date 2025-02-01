@@ -2,16 +2,20 @@ import {ApplicationConfig, importProvidersFrom, provideZoneChangeDetection} from
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {JwtModule} from '@auth0/angular-jwt';
 import {tokenGetter} from './services/auth.service';
+import {JwtInterceptor} from './jwt.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(
-      withInterceptorsFromDi()
-    ),
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:JwtInterceptor,
+      multi:true
+    },
     importProvidersFrom(
       JwtModule.forRoot({
         config: {

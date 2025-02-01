@@ -11,8 +11,6 @@ interface LoginResponse {
   userEntity: User;
 }
 
-
-
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);

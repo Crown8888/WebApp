@@ -19,4 +19,8 @@ public class Mapper {
     public User toEntity(UserDTO userDTO) {
         return new User(userDTO.getId(), userDTO.getUsername(), userDTO.getEmail(), userDTO.getPassword());
     }
+
+    public Comment toEntity(CommentDTO commentDTO) {
+        return new Comment(commentDTO.getId(), commentDTO.getContent(), commentDTO.getUser(), commentDTO.getPost(), commentDTO.getCreatedAt());
+    }
 }
