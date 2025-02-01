@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="d-flex justify-content-center box">
+    <div class="user_card">
+      <div class="d-flex justify-content-center">
+      </div>
+      <div class="d-flex justify-content-center form_container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="input-group mb-3">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-key"><i-feather name="user" class="icon"></i-feather></i></span>
+            </div>
+            <input type="text" class="form-control input_user" id="username" name="username" formControlName="username" required>
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-key"><i-feather name="lock" class="icon"></i-feather></i></span>
+            </div>
+            <input type="password" class="form-control input_pass" id="password" name="password" formControlName="password" required>
+          </div>
+          <div class="d-flex justify-content-center mt-3 login_container">
+            <button type="submit" name="button" class="btn login_btn">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
