@@ -17,11 +17,15 @@
 
         <div class="mt-3">
           <h3>Dodaj komentarz</h3>
-          <form (submit)="addComment()">
+          <form [formGroup]="commentForm" (ngSubmit)="addComment()">
             <div class="mb-3">
-              <textarea class="form-control" [(ngModel)]="newComment.content" name="newComment" required></textarea>
+              <textarea class="form-control" formControlName="content" required></textarea>
+              <div *ngIf="commentForm.controls['content'].invalid && (commentForm.controls['content'].dirty)" class="text-danger">
+                <div *ngIf="commentForm.controls['content'].errors?.['required']">Komentarz jest wymagany.</div>
+                <div *ngIf="commentForm.controls['content'].errors?.['minlength']">Komentarz musi mieć co najmniej 5 znaków.</div>
+              </div>
             </div>
-            <button type="submit" class="btn btn-success">Dodaj</button>
+            <button type="submit" class="btn btn-success" [disabled]="commentForm.invalid">Dodaj</button>
           </form>
         </div>
       </div>
