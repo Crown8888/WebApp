@@ -1,0 +1,21 @@
+
+  <h2>Dodaj nowy post</h2>
+  <form (submit)="addPost()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Tytuł</label>
+      <input type="text" id="title" class="form-control" [(ngModel)]="newPost.title" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">Treść</label>
+      <textarea id="content" class="form-control" [(ngModel)]="newPost.content" name="content" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Kategoria</label>
+      <input type="text" id="category" class="form-control" [(ngModel)]="newPost.category" name="category" required>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-success me-2">Dodaj post</button>
+      <button type="button" class="btn btn-secondary" [routerLink]="['/myPosts']">Anuluj</button>
+    </div>
+  </form>
+

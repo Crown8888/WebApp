@@ -41,6 +41,7 @@ export class AuthService {
   }
 
   login(user: User) {
+    sessionStorage.removeItem('token');
     this.user = user;
     let url = environment.apiUrl + '/login';
     this.http.post<LoginResponse>(url, {
@@ -53,7 +54,7 @@ export class AuthService {
           sessionStorage.setItem('token', this.token);
           this.user = response.userEntity;
           this.loggedIn.next(true);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
         }
       },
       () => {

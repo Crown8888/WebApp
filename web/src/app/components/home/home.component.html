@@ -15,29 +15,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Strona główna</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Artykuły</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">O nas</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Kontakt</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['newPosts']">Strona główna</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['allPosts']">Artykuły</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['myPosts']">Moje artykuły</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['about']">O nas</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['contact']">Kontakt</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
   <section class="container mt-4 flex-grow-1">
-    <div class="row">
-      <div class="col-md-6 d-flex align-items-stretch" *ngFor="let post of posts">
-        <div class="card mb-4 w-100">
-          <div class="card-body d-flex flex-column">
-            <h2 class="card-title">{{ post.title }}</h2>
-            <p class="card-text">{{ post.summary.length > 100 ? (post.summary | slice:0:100) + '...' : post.summary }}</p>
-            <div class="mt-auto">
-              <button class="btn btn-primary" (click)="readMore(post.id)">Czytaj więcej</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   <router-outlet></router-outlet>
   </section>
 
   <footer class="footer text-center bg-light py-3 mt-auto">
