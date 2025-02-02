@@ -1,9 +1,9 @@
 <h2>Dodaj nowy post</h2>
-<form [formGroup]="newPostForm" (ngSubmit)="addPost()">
+<form [formGroup]="newPostForm" (ngSubmit)="addPost()" *ngIf="dataLoaded">
   <div class="mb-3">
     <label for="title" class="form-label">Tytuł</label>
     <input type="text" id="title" class="form-control" formControlName="title" required>
-    <div *ngIf="newPostForm.controls['title'].invalid && (newPostForm.controls['title'].dirty || newPostForm.controls['title'].touched)" class="text-danger">
+    <div *ngIf="newPostForm.controls['title'].invalid && (newPostForm.controls['title'].dirty)" class="text-danger">
       <div *ngIf="newPostForm.controls['title'].errors?.['required']">Tytuł jest wymagany.</div>
       <div *ngIf="newPostForm.controls['title'].errors?.['minlength']">Tytuł musi mieć co najmniej 5 znaków.</div>
     </div>
@@ -11,17 +11,18 @@
   <div class="mb-3">
     <label for="content" class="form-label">Treść</label>
     <textarea id="content" class="form-control" formControlName="content" required></textarea>
-    <div *ngIf="newPostForm.controls['content'].invalid && (newPostForm.controls['content'].dirty || newPostForm.controls['content'].touched)" class="text-danger">
+    <div *ngIf="newPostForm.controls['content'].invalid && (newPostForm.controls['content'].dirty)" class="text-danger">
       <div *ngIf="newPostForm.controls['content'].errors?.['required']">Treść jest wymagana.</div>
       <div *ngIf="newPostForm.controls['content'].errors?.['minlength']">Treść musi mieć co najmniej 10 znaków.</div>
     </div>
   </div>
   <div class="mb-3">
     <label for="category" class="form-label">Kategoria</label>
-    <input type="text" id="category" class="form-control" formControlName="category" required>
-    <div *ngIf="newPostForm.controls['category'].invalid && (newPostForm.controls['category'].dirty || newPostForm.controls['category'].touched)" class="text-danger">
+    <select id="category" class="form-control" formControlName="category" required>
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+    </select>
+    <div *ngIf="newPostForm.controls['category'].invalid && (newPostForm.controls['category'].dirty)" class="text-danger">
       <div *ngIf="newPostForm.controls['category'].errors?.['required']">Kategoria jest wymagana.</div>
-      <div *ngIf="newPostForm.controls['category'].errors?.['minlength']">Kategoria musi mieć co najmniej 3 znaki.</div>
     </div>
   </div>
   <div>

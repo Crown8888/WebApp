@@ -1,18 +1,16 @@
 package pl.webapp.wsjava.dto;
 
-import pl.webapp.wsjava.model.User;
-
 public class ResponseDTO {
 
     private String token;
-    private UserDTO userEntity;
+    private UserDTO userDTOEntity;
 
     public ResponseDTO() {
     }
 
-    public ResponseDTO(String token, UserDTO userEntity) {
+    public ResponseDTO(String token, UserDTO userDTOEntity) {
         this.token = token;
-        this.userEntity = userEntity;
+        this.userDTOEntity = userDTOEntity;
     }
 
     public String getToken() {
@@ -24,10 +22,10 @@ public class ResponseDTO {
     }
 
     public UserDTO getUserEntity() {
-        return userEntity;
+        return userDTOEntity;
     }
 
-    public void setUserEntity(UserDTO userEntity) {
-        this.userEntity = userEntity;
+    public void setUserEntity(UserDTO userDTOEntity) {
+        this.userDTOEntity = userDTOEntity;
     }
 }

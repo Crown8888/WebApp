@@ -14,13 +14,15 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final CurrentUserService currentUserService;
 
     public CommentService(CommentRepository commentRepository,
                           PostRepository postRepository,
-                          UserRepository userRepository) {
+                          UserRepository userRepository, CurrentUserService currentUserService) {
         this.commentRepository = commentRepository;
         this.postRepository = postRepository;
         this.userRepository = userRepository;
+        this.currentUserService = currentUserService;
     }
 
     public Comment findById(Long id) {
@@ -33,7 +35,8 @@ public class CommentService {
 
     public Comment createComment(Comment comment) {
         // Set creation timestamp
-        comment.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        comment.setCreated_at(new Timestamp(System.currentTimeMillis()));
+        comment.setUser(currentUserService.getCurrentUser());
 
         // Verify post and user exist
         postRepository.findById(comment.getPost().getId())

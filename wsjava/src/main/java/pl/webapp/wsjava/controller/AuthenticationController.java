@@ -7,13 +7,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 import pl.webapp.wsjava.dto.ResponseDTO;
 import pl.webapp.wsjava.dto.UserDTO;
-import pl.webapp.wsjava.model.User;
 import pl.webapp.wsjava.service.Mapper;
 import pl.webapp.wsjava.service.SessionService;
 import pl.webapp.wsjava.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api")
 public class AuthenticationController {
 
@@ -31,14 +29,14 @@ public class AuthenticationController {
     }
 
     @PostMapping(path = "/login")
-    public ResponseEntity<ResponseDTO> login(@RequestBody UserDTO user) {
-        manager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-        String token = SessionService.generateToken(user.getUsername());
-        UserDTO userEntity = mapper.toDTO(userService.findByUsername(user.getUsername()));
-        if(userEntity != null && userEntity.isEnabled() == false){
+    public ResponseEntity<ResponseDTO> login(@RequestBody UserDTO userDTO) {
+        manager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword()));
+        String token = SessionService.generateToken(userDTO.getUsername());
+        UserDTO userDTOEntity = mapper.toDTO(userService.findByUsername(userDTO.getUsername()));
+        if(userDTOEntity != null && userDTOEntity.isEnabled() == false){
             return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok(new ResponseDTO(token, userEntity));
+        return ResponseEntity.ok(new ResponseDTO(token, userDTOEntity));
     }
 
 

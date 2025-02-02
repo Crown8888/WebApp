@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/login").permitAll()
                         .requestMatchers("/error").permitAll()
-                        .anyRequest().permitAll()) //.authenticated() turned off for testing purposes
+                        .anyRequest().authenticated())
                 .authenticationManager(authenticationManager)
                 .addFilterBefore(sessionFilter, UsernamePasswordAuthenticationFilter.class) //JWT Token Filter
                 .build();

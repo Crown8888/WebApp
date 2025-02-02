@@ -18,18 +18,18 @@ public class Comment {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    private Timestamp createdAt;
+    private Timestamp created_at;
 
 
     public Comment() {
     }
 
-    public Comment(Long id, String content, User user, Post post, Timestamp createdAt) {
+    public Comment(Long id, String content, User user, Post post, Timestamp created_at) {
         this.id = id;
         this.content = content;
         this.user = user;
         this.post = post;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
     }
 
     public Long getId() {
@@ -60,11 +60,11 @@ public class Comment {
         this.post = post;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 }

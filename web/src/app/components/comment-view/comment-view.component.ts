@@ -1,17 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Comment } from '../../models/comment.model';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-comment-view',
-  imports: [],
   templateUrl: './comment-view.component.html',
+  imports: [
+    DatePipe
+  ],
   styleUrl: './comment-view.component.css'
 })
 export class CommentViewComponent {
+  @Input() comment!: Comment;
 
-  comment = { content: 'Komentarz', user: { username: 'admin' }, createdAt: '2025-01-01 15:00', likes: 0 };
+  constructor() {}
 
-  likeComment(){
+  likeComment() {
     console.log('Polubienie zostało dodane.');
   }
-
 }

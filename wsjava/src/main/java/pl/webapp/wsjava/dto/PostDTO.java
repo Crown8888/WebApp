@@ -1,68 +1,61 @@
 package pl.webapp.wsjava.dto;
-import java.time.LocalDateTime;
+
+import pl.webapp.wsjava.model.User;
+
+import java.sql.Timestamp;
+
 public class PostDTO {
     private Long id;
     private String title;
     private String content;
-    private Long categoryId;
-    private Long userId;
-    private String authorUsername;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private int likesCount;
-    private int commentsCount;
-    private boolean isLikedByCurrentUser;
+    private Timestamp created_at;
+    private User user;
+    
+
     public PostDTO() {
     }
 
-    public PostDTO(Long id, String title, String content) {
+    public PostDTO(Long id, String title, String content, User user, Timestamp created_at) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.user = user;
+        this.created_at = created_at;
     }
 
-    // Optional constructor with categoryId
-    public PostDTO(Long id, String title, String content, Long categoryId) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.categoryId = categoryId;
-    }
-    public void setId(Long id) {
+    public Long getId() {
+        return id;
     }
 
-    public void setTitle(String title) {
-    }
-
-    public void setContent(String content) {
-    }
-
-    public void setAuthorUsername(String username) {
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-    }
-
-    public void setLikesCount(int size) {
-    }
-
-    public void setCommentsCount(int size) {
-    }
-
-    public void setLikedByCurrentUser(boolean b) {
-    }
-    public long getUserId() {
-        return userId;
-    }
     public String getTitle() {
         return title;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getContent() {
         return content;
     }
 
-    // getters, setters, constructors
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Timestamp getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
+    }
 }

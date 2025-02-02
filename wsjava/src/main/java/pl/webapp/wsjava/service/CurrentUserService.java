@@ -31,4 +31,8 @@ public class CurrentUserService implements UserDetailsService {
     public String getCurrentUsername() {
         return ((UserDetails) org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
     }
+
+    public User getCurrentUser() {
+        return repository.findByUsername(getCurrentUsername());
+    }
 }
