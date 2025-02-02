@@ -5,13 +5,12 @@ import { environment } from '../app.config';
 import { User } from '../models/user';
 import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface LoginResponse {
   token: string;
   userEntity: User;
 }
-
-
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -19,7 +18,7 @@ export class AuthService {
   private user: User | null;
   private token: string | null;
 
-  constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService) {
+  constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService, private snackBar: MatSnackBar) {
     this.user = null;
     this.token = '';
   }
@@ -42,6 +41,7 @@ export class AuthService {
   }
 
   login(user: User) {
+    sessionStorage.removeItem('token');
     this.user = user;
     let url = environment.apiUrl + '/login';
     this.http.post<LoginResponse>(url, {
@@ -54,9 +54,17 @@ export class AuthService {
           sessionStorage.setItem('token', this.token);
           this.user = response.userEntity;
           this.loggedIn.next(true);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
         }
       },
+      () => {
+        this.snackBar.open("Invalid username or password", "Close", {
+          duration: 3000,
+          horizontalPosition: 'right',
+          verticalPosition: 'bottom',
+          panelClass: ['error-snackbar']
+        });
+      }
     );
   }
 

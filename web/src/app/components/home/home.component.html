@@ -1,1 +1,35 @@
-<p>Token: {{token}}</p>
+<div class="container-fluid d-flex flex-column min-vh-100">
+  <header class="header text-center py-4">
+    <h1>MechoBlog</h1>
+    <p>Od Mechaników dla Mechaników</p>
+    <div class="user-info text-end">
+      <span class="me-2">Witaj, {{ user.username }}</span>
+      <button class="btn btn-danger btn-sm" (click)="logout()">Wyloguj</button>
+    </div>
+  </header>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" [routerLink]="['newPosts']">Strona główna</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['allPosts']">Artykuły</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['myPosts']">Moje artykuły</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['about']">O nas</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['contact']">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container mt-4 flex-grow-1">
+   <router-outlet></router-outlet>
+  </section>
+
+  <footer class="footer text-center bg-light py-3 mt-auto">
+    <p>&copy; 2025 Bartłomiej Kozak Arkadiusz Kiszka Politechnika Rzeszowska </p>
+  </footer>
+</div>

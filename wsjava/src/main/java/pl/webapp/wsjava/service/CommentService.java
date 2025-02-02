@@ -3,15 +3,24 @@ package pl.webapp.wsjava.service;
 import org.springframework.stereotype.Service;
 import pl.webapp.wsjava.model.Comment;
 import pl.webapp.wsjava.repository.CommentRepository;
+import pl.webapp.wsjava.repository.PostRepository;
+import pl.webapp.wsjava.repository.UserRepository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
+    private final PostRepository postRepository;
+    private final UserRepository userRepository;
 
-    public CommentService(CommentRepository commentRepository) {
+    public CommentService(CommentRepository commentRepository,
+                          PostRepository postRepository,
+                          UserRepository userRepository) {
         this.commentRepository = commentRepository;
+        this.postRepository = postRepository;
+        this.userRepository = userRepository;
     }
 
     public Comment findById(Long id) {
@@ -20,5 +29,23 @@ public class CommentService {
 
     public List<Comment> findByPostId(Long postId) {
         return commentRepository.findByPostId(postId);
+    }
+
+    public Comment createComment(Comment comment) {
+        // Set creation timestamp
+        comment.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+
+        // Verify post and user exist
+        postRepository.findById(comment.getPost().getId())
+                .orElseThrow(() -> new RuntimeException("Post not found"));
+
+        userRepository.findById(comment.getUser().getId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return commentRepository.save(comment);
+    }
+
+    public void deleteComment(Long id) {
+        commentRepository.deleteById(id);
     }
 }

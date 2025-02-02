@@ -1,0 +1,49 @@
+<div class="container-fluid d-flex flex-column min-vh-100">
+  <header class="header text-center py-4">
+    <h1>Kontakt</h1>
+    <p>Skontaktuj się z nami, jeśli masz pytania lub chcesz nawiązać współpracę.</p>
+  </header>
+
+  <section class="container mt-4 flex-grow-1">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card p-4">
+          <h2>Formularz kontaktowy</h2>
+          <form [formGroup]="contactForm" (ngSubmit)="sendMessage()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Imię i nazwisko</label>
+              <input type="text" id="name" class="form-control" formControlName="name" required>
+              <div *ngIf="contactForm.controls['name'].invalid && (contactForm.controls['name'].dirty)" class="text-danger">
+                <div *ngIf="contactForm.controls['name'].errors?.['required']">Imię i nazwisko jest wymagane.</div>
+                <div *ngIf="contactForm.controls['name'].errors?.['minlength']">Imię i nazwisko musi mieć co najmniej 3 znaki.</div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">E-mail</label>
+              <input type="email" id="email" class="form-control" formControlName="email" required>
+              <div *ngIf="contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty)" class="text-danger">
+                <div *ngIf="contactForm.controls['email'].errors?.['required']">E-mail jest wymagany.</div>
+                <div *ngIf="contactForm.controls['email'].errors?.['email']">Nieprawidłowy format e-maila.</div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Wiadomość</label>
+              <textarea id="message" class="form-control" formControlName="message" required></textarea>
+              <div *ngIf="contactForm.controls['message'].invalid && (contactForm.controls['message'].dirty)" class="text-danger">
+                <div *ngIf="contactForm.controls['message'].errors?.['required']">Wiadomość jest wymagana.</div>
+                <div *ngIf="contactForm.controls['message'].errors?.['minlength']">Wiadomość musi mieć co najmniej 10 znaków.</div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Wyślij</button>
+          </form>
+        </div>
+        <div class="card p-4 mt-3">
+          <h2>Nasze dane kontaktowe</h2>
+          <p><strong>Email:</strong> kontakt&#64;blogmechaniczny.pl</p>
+          <p><strong>Telefon:</strong> +48 123 456 789</p>
+          <p><strong>Adres:</strong> ul. Mechaniczna 10, 00-123 Warszawa</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

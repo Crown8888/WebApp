@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 
 import { FeatherModule } from 'angular-feather';
-import {User, Lock} from 'angular-feather/icons';
+import {User, Lock, Plus} from 'angular-feather/icons';
 
 const icons = {
   User,
-  Lock
+  Lock,
+  Plus
 };
 
 @NgModule({
