@@ -10,11 +10,12 @@ import java.util.List;
 @Service
 public class PostService {
     private final PostRepository postRepository;
-    private final UserService userService;
+    private final CurrentUserService currentUserService;
 
-    public PostService(PostRepository postRepository, UserService userService) {
+
+    public PostService(PostRepository postRepository, CurrentUserService currentUserService) {
         this.postRepository = postRepository;
-        this.userService = userService;
+        this.currentUserService = currentUserService;
     }
 
     public Post findById(Long id) {
@@ -25,8 +26,9 @@ public class PostService {
         return (List<Post>) postRepository.findAll();
     }
 
-    public Post createPost(Post post, Long userId) {
-        post.setUser(userService.findById(userId));
+    public Post createPost(Post post) {
+        post.setUser(currentUserService.getCurrentUser());
+        post.setCreated_at(new java.sql.Timestamp(System.currentTimeMillis()));
         return postRepository.save(post);
     }
     // findNewPosts

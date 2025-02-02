@@ -1,23 +1,42 @@
 package pl.webapp.wsjava.dto;
 
+import pl.webapp.wsjava.model.Post;
+import pl.webapp.wsjava.model.User;
+
 public class LikeDTO {
     private Long id;
-    private Long postId;
-    private Long userId;
+    private Post post;
+    private User user;
 
     public LikeDTO() {}
 
-    public LikeDTO(Long id, Long postId, Long userId) {
+    public LikeDTO(Long id, Post post, User user) {
         this.id = id;
-        this.postId = postId;
-        this.userId = userId;
+        this.post = post;
+        this.user = user;
     }
 
-    // Getters and setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public Long getPostId() { return postId; }
-    public void setPostId(Long postId) { this.postId = postId; }
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

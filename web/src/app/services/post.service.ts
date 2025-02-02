@@ -5,12 +5,15 @@ import { environment } from '../app.config';
   providedIn: 'root',
 })
 export class PostService {
-  private APIUrlPost: string;
+  private readonly APIUrlPost: string;
   constructor(private http: HttpClient) {
-    this.APIUrlPost = environment.apiUrl + '/post';
+    this.APIUrlPost = environment.apiUrl + '/posts';
   }
   getAllPosts() {
     return this.http.get(this.APIUrlPost);
+  }
+  getPostsForCurrentUser() {
+    return this.http.get(`${this.APIUrlPost}/current`);
   }
   getPostById(id: number) {
     return this.http.get(`${this.APIUrlPost}/${id}`);

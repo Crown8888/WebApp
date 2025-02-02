@@ -6,7 +6,7 @@ import { Post } from '../../models/post.model';
 
 @Component({
   selector: 'app-new-posts',
-  imports: [SlicePipe, CommonModule],
+  imports: [ CommonModule],
   templateUrl: './new-posts.component.html',
   styleUrl: './new-posts.component.css',
 })

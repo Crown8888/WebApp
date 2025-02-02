@@ -10,7 +10,6 @@ import pl.webapp.wsjava.service.Mapper;
 import pl.webapp.wsjava.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/user")
 public class UserController {
 
@@ -33,8 +32,8 @@ public class UserController {
     //Get current user
     @GetMapping("/current")
     public ResponseEntity<UserDTO> getCurrentUser() {
-        UserDTO user = modelMapper.toDTO(userService.findByUsername(currentUserService.getCurrentUsername()));
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        UserDTO userDTO = modelMapper.toDTO(userService.findByUsername(currentUserService.getCurrentUsername()));
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
 }

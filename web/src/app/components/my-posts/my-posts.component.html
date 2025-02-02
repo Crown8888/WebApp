@@ -11,11 +11,11 @@
       <div class="card mb-4 w-100">
         <div class="card-body d-flex flex-column">
           <h2 class="card-title">{{ post.title }}</h2>
-          <p class="card-text">{{ post.summary.length > 100 ? (post.summary | slice:0:100) + '...' : post.summary }}</p>
+          <p class="card-text">{{ post.content.length > 100 ? (post.content | slice:0:100) + '...' : post.content }}</p>
           <div class="mt-auto d-flex justify-content-between">
             <button class="btn btn-primary" (click)="readMore(post.id)">Czytaj więcej</button>
             <div class="text-end">
-              <span class="ms-2">{{ post.createdAt | date:'dd-MM-YY HH:mm' }}</span>
+              <span class="ms-2">{{ post.created_at | date:'dd-MM-YY HH:mm' }}</span>
               <span class="ms-2">{{ post.user.username }}</span>
             </div>
           </div>

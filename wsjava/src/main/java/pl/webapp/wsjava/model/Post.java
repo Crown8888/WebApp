@@ -59,11 +59,11 @@ public class Post {
     public Long getId() {
         return id;
     }
-    public Timestamp getCreatedAt() {
+    public Timestamp getCreated_at() {
         return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.created_at = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 }

@@ -1,8 +1,4 @@
 <div class="comment p-3 border rounded mb-3">
-  <p class="mb-1"><strong>{{ comment.user.username }} </strong> <span class="text-muted">{{ comment.createdAt }}</span></p>
+  <p class="mb-1"><strong>{{ comment.user?.username }} </strong> <span class="text-muted">{{ comment.created_at | date:'dd-MM-YY HH:mm' }}</span></p>
   <p>{{ comment.content }}</p>
-  <div class="d-flex align-items-center">
-    <button class="btn btn-sm btn-outline-primary" (click)="likeComment()">👍 Polub</button>
-    <span class="ms-2">{{ comment.likes }} polubień</span>
-  </div>
 </div>

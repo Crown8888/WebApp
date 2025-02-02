@@ -18,14 +18,14 @@ public class Like {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private Timestamp createdAt;
+    private Timestamp created_at;
 
     public Like() {}
 
     public Like(Post post, User user) {
         this.post = post;
         this.user = user;
-        this.createdAt = new Timestamp(System.currentTimeMillis());
+        this.created_at = new Timestamp(System.currentTimeMillis());
     }
 
     // Getters and setters
@@ -34,6 +34,6 @@ public class Like {
     public void setPost(Post post) { this.post = post; }
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
-    public Timestamp getCreatedAt() { return createdAt; }
-    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public Timestamp getCreated_at() { return created_at; }
+    public void setCreated_at(Timestamp created_at) { this.created_at = created_at; }
 }
