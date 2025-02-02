@@ -29,4 +29,7 @@ public class PostService {
         post.setUser(userService.findById(userId));
         return postRepository.save(post);
     }
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
+    }
 }

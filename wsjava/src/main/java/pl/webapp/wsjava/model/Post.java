@@ -49,4 +49,8 @@ public class Post {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
