@@ -18,4 +18,7 @@ export class PostService {
   createPost(post: any) {
     return this.http.post(this.APIUrlPost, post);
   }
+  getNewPosts() {
+    return this.http.get(`${this.APIUrlPost}/new`);
+  }
 }
