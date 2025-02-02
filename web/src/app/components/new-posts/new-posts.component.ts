@@ -1,28 +1,30 @@
 import { Component } from '@angular/core';
-import {CommonModule, SlicePipe} from '@angular/common';
-import {Router} from '@angular/router';
+import { CommonModule, SlicePipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { PostService } from '../../services/post.service';
+import { Post } from '../../models/post.model';
 
 @Component({
   selector: 'app-new-posts',
-  imports: [
-    SlicePipe,
-    CommonModule
-  ],
+  imports: [SlicePipe, CommonModule],
   templateUrl: './new-posts.component.html',
-  styleUrl: './new-posts.component.css'
+  styleUrl: './new-posts.component.css',
 })
 export class NewPostsComponent {
-  posts = [
-    { id: 1, title: 'Wprowadzenie do Termodynamiki', summary: 'Podstawowy przewodnik po zasadach termodynamiki.', createdAt: '2025-01-01 15:00', user:{ username: 'admin'} },
-    { id: 2, title: 'Najnowsze trendy w inżynierii mechanicznej', summary: 'Odkryj najnowsze osiągnięcia w tej dziedzinie.', createdAt: '2025-01-02 15:00',user:{ username: 'admin'}  }
-  ];
+  posts: Post[] = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private postService: PostService) {
+    this.fetchPosts();
+  }
 
+  fetchPosts() {
+    this.postService.getNewPosts().subscribe((data: any) => {
+      this.posts = data as Post[];
+      this.posts = data;
+    });
   }
 
   readMore(id: number) {
     this.router.navigate(['/postView', id]);
   }
-
 }
