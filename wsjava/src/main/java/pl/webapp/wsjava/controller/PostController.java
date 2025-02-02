@@ -44,6 +44,14 @@ public class PostController {
         return new ResponseEntity<>(modelMapper.toDTO(post), HttpStatus.CREATED);
     }
 
+    // GetNewPosts
+    @GetMapping("/new")
+    public ResponseEntity<List<PostDTO>> getNewPosts() {
+        return ResponseEntity.ok(postService.findNewPosts().stream()
+                .map(modelMapper::toDTO)
+                .collect(Collectors.toList()));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Long id) {
         postService.deletePost(id);

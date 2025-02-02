@@ -29,6 +29,10 @@ public class PostService {
         post.setUser(userService.findById(userId));
         return postRepository.save(post);
     }
+    // findNewPosts
+    public List<Post> findNewPosts() {
+        return postRepository.findNewPosts();
+    }
     public void deletePost(Long id) {
         postRepository.deleteById(id);
     }

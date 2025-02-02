@@ -2,6 +2,8 @@ package pl.webapp.wsjava.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -11,6 +13,9 @@ public class Post {
     private Long id;
     private String title;
     private String content;
+    private Timestamp created_at;
+
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -19,11 +24,12 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long id, String title, String content, User user) {
+    public Post(Long id, String title, String content, User user, Timestamp created_at) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.user = user;
+        this.created_at = created_at;
     }
 
     public String getTitle() {
@@ -52,5 +58,12 @@ public class Post {
 
     public Long getId() {
         return id;
+    }
+    public Timestamp getCreatedAt() {
+        return created_at;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.created_at = createdAt;
     }
 }
