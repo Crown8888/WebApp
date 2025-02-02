@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {CommonModule, SlicePipe} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-posts',
@@ -15,8 +16,13 @@ export class NewPostsComponent {
     { id: 1, title: 'Wprowadzenie do Termodynamiki', summary: 'Podstawowy przewodnik po zasadach termodynamiki.', createdAt: '2025-01-01 15:00', user:{ username: 'admin'} },
     { id: 2, title: 'Najnowsze trendy w inżynierii mechanicznej', summary: 'Odkryj najnowsze osiągnięcia w tej dziedzinie.', createdAt: '2025-01-02 15:00',user:{ username: 'admin'}  }
   ];
+
+  constructor(private router: Router) {
+
+  }
+
   readMore(id: number) {
-    console.log('Przechodzenie do artykułu', id);
+    this.router.navigate(['/postView', id]);
   }
 
 }

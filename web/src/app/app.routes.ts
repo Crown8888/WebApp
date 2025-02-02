@@ -8,6 +8,7 @@ import {AllPostsComponent} from './components/all-posts/all-posts.component';
 import {MyPostsComponent} from './components/my-posts/my-posts.component';
 import {AboutComponent} from './components/about/about.component';
 import {ContactComponent} from './components/contact/contact.component';
+import {PostViewComponent} from './components/post-view/post-view.component';
 
 
 export const routes: Routes = [
@@ -22,7 +23,8 @@ export const routes: Routes = [
       { path: 'allPosts', component: AllPostsComponent },
       { path: 'myPosts', component: MyPostsComponent },
       { path: 'about', component: AboutComponent},
-      { path: 'contact', component: ContactComponent }
+      { path: 'contact', component: ContactComponent },
+      { path: 'postView/:id', component: PostViewComponent }
       ]
   },
   { path: 'login', component: LoginComponent },

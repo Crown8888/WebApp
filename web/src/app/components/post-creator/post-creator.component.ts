@@ -18,8 +18,8 @@ export class PostCreatorComponent {
 
   newPost = { title: '', content: '', category: '' };
   posts = [
-    { title: 'Wprowadzenie do Termodynamiki', content: 'Podstawowy przewodnik po zasadach termodynamiki.', category: 'Termodynamika' },
-    { title: 'Najnowsze trendy w inżynierii mechanicznej', content: 'Odkryj najnowsze osiągnięcia w tej dziedzinie.', category: 'Inżynieria mechaniczna' }
+    { title: 'Wprowadzenie do Termodynamiki', content: 'Podstawowy przewodnik po zasadach termodynamiki.', category: 'Termodynamika', user: { username: 'admin' }, likes: 0 },
+    { title: 'Najnowsze trendy w inżynierii mechanicznej', content: 'Odkryj najnowsze osiągnięcia w tej dziedzinie.', category: 'Inżynieria mechaniczna', user: { username: 'admin' }, likes: 0 }
     ];
   constructor() { }
   addPost() {
