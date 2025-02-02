@@ -1,29 +1,39 @@
-import { Component } from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {SlicePipe} from '@angular/common';
-import {CommonModule} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-post-creator',
   imports: [
-    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     RouterLink
   ],
   templateUrl: './post-creator.component.html',
   styleUrl: './post-creator.component.css'
 })
-export class PostCreatorComponent {
+export class PostCreatorComponent implements OnInit {
+  newPostForm: FormGroup;
 
-  newPost = { title: '', content: '', category: '' };
-  posts = [
-    { title: 'Wprowadzenie do Termodynamiki', content: 'Podstawowy przewodnik po zasadach termodynamiki.', category: 'Termodynamika', user: { username: 'admin' }, likes: 0 },
-    { title: 'Najnowsze trendy w inżynierii mechanicznej', content: 'Odkryj najnowsze osiągnięcia w tej dziedzinie.', category: 'Inżynieria mechaniczna', user: { username: 'admin' }, likes: 0 }
-    ];
-  constructor() { }
-  addPost() {
-    this.newPost = { title: '', content: '', category: '' };
+  constructor(private fb: FormBuilder) {
+    this.newPostForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      content: ['', [Validators.required, Validators.minLength(10)]],
+      category: ['', [Validators.required, Validators.minLength(3)]]
+    });
   }
 
+  ngOnInit() {
+
+  }
+
+  addPost() {
+    if (this.newPostForm.valid) {
+      console.log('New post added:', this.newPostForm.value);
+      this.newPostForm.reset();
+    } else {
+      console.log('Form is invalid');
+    }
+  }
 }
