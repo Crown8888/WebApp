@@ -6,6 +6,7 @@ import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@ang
 import {JwtModule} from '@auth0/angular-jwt';
 import {tokenGetter} from './services/auth.service';
 import {JwtInterceptor} from './jwt.interceptor';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
@@ -24,7 +25,7 @@ export const appConfig: ApplicationConfig = {
           disallowedRoutes: [],
         },
       }),
-    ),
+    ), provideAnimationsAsync(),
   ]
 };
 export const environment = {

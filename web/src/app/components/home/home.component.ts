@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
       1,
       'Jan',
       'temp@temp.pl',
-      'xd',
+      'temp',
       false,
     );
   }
@@ -40,6 +40,6 @@ export class HomeComponent implements OnInit {
   }
 
   logout() {
-    console.log('Użytkownik wylogowany');
+    this.userService.logout();
   }
 }
